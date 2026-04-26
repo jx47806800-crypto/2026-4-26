@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<style>
+		.container {
+			text-align: center;
+			top: 50%;
+			left: 50%;
+			width: 400px;
+			height: 400px;
+			position: fixed;
+			transform: translate(-50%, -50%);
+		}
+
+		.card {
+			font-size: 16px;
+			width: 70px;
+			height: 70px;
+			margin: 5px;
+			border-radius: 5px;
+			float: left;
+			line-height: 70px;
+			color: #fff;
+			background-color: royalblue;
+			cursor: pointer;
+			text-shadow: 0px 0px 5px gray;
+			box-shadow: 0px 0px 5px gray;
+			transition: 0.2s;
+		}
+
+		.card:hover {
+			background-color: #FFD700;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+        <div class="card">1</div>
+        <div class="card">2</div>
+        <div class="card">3</div>
+        <div class="card">4</div>
+        <div class="card">5</div>
+        <div class="card">6</div>
+        <div class="card">7</div>
+        <div class="card">8</div>
+        <div class="card">9</div>
+        <div class="card">10</div>
+        <div class="card">11</div>
+        <div class="card">12</div>
+        <div class="card">13</div>
+        <div class="card">14</div>
+        <div class="card">15</div>
+        <div class="card">16</div>
+        <div class="card">17</div>
+        <div class="card">18</div>
+        <div class="card">19</div>
+        <div class="card">20</div>
+        <div class="card">21</div>
+        <div class="card">22</div>
+        <div class="card">23</div>
+        <div class="card">24</div>
+        <div class="card">25</div>
+    </div>
+	<script>
+		var cards = $(".card");
+		var count = 1;
+		var starttime = Date.now();
+		// var tmp = $(cards[1]).text();
+		// $(cards[1]).text($(cards[0]).text());
+		// $(cards[0]).text(tmp);
+
+		for (var i = 0; i < 50; i++) {
+			var rand1 = Math.floor(Math.random() * 25);
+			var rand2 = Math.floor(Math.random() * 25);
+			var tmp = $(cards[rand2]).text();
+			$(cards[rand2]).text($(cards[rand1]).text());
+			$(cards[rand1]).text(tmp);
+		}
+		$(".card").click(check);
+		function check() {
+			num = Number($(this).text());
+			if (count == num && num <= 25) {
+				$(this).text(num += 25);
+				count += 1;
+			}
+			if (count == num && num > 25) {
+				$(this).css("visibility", "hidden");
+				count++;
+			}
+			if (count == 51) {
+				$(".card").css("visibility", "visible");
+				$(".card").css("background", "gold");
+				$(".card").text(" ");
+				var endtime = Date.now();
+				var time = (endtime - starttime)/1000;
+				$(cards[11]).text("結果:");
+				$(cards[12]).text(time);
+				$(cards[13]).text("秒");
+			}
+		}
+	</script>
+</body>
+</html>
